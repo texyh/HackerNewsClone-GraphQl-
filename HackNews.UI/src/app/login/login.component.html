@@ -2,15 +2,15 @@
 <div class='flex flex-column'>
   <input
     *ngIf="!login"
-    [(ngModel)]="name"
+    [(ngModel)]="user.name"
     type="text"
     placeholder="Your name">
   <input
-    [(ngModel)]="email"
+    [(ngModel)]="user.email"
     type="text"
     placeholder="Your email address">
   <input
-    [(ngModel)]="password"
+    [(ngModel)]="user.password"
     type="password"
     placeholder="Password">
 </div>

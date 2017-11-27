@@ -15,7 +15,7 @@ export class AuthService {
       }
 
       // 4
-      get isAuthenticated(): Observable {
+      get isAuthenticated(): Observable<boolean> {
         return this._isAuthenticated.asObservable();
       }
       // 5

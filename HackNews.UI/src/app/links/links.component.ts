@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from '../models/link.model';
 import { Apollo } from 'apollo-angular/Apollo';
-import { ALL_LINKS_QUERY, AllLinkQueryResponse } from '../queries/graphql';
+import { ALL_LINKS_QUERY, AllLinkQueryResponse } from '../queries/linkQueries';
 
 @Component({
   selector: 'app-links',
@@ -20,10 +20,12 @@ export class LinksComponent implements OnInit {
   ngOnInit() {
     this.apollo.watchQuery({
       query: ALL_LINKS_QUERY
-    }).valueChanges.subscribe((response) => {
+    })
+    .valueChanges
+    .subscribe((response) => {
       // 5
-      this.allLinks = response.data.allLinks;
-      this.loading = response.data.loading;
+      this.allLinks = response.data['allLinks'];
+      this.loading = response.data['loading']
      });
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from '../models/link.model';
 import { Apollo } from 'apollo-angular';
-import { CREATE_LINK_MUTATION, CreateLinkMutationResponse, ALL_LINKS_QUERY } from '../queries/graphql';
+import { CREATE_LINK_MUTATION, CreateLinkMutationResponse, ALL_LINKS_QUERY } from '../queries/linkQueries';
 import { Router } from '@angular/router';
 
 @Component({
