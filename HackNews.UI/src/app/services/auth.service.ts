@@ -20,7 +20,7 @@ export class AuthService {
       }
       // 5
       saveUserData(id: string, token: string) {
-    
+
         localStorage.setItem(GC_USER_ID, id);
         localStorage.setItem(GC_AUTH_TOKEN, token);
         this.setUserId(id);

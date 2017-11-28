@@ -4,8 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { GC_USER_ID, GC_AUTH_TOKEN } from '../constants/authConstants';
 import { Router } from '@angular/router/';
 import { Apollo } from 'apollo-angular/Apollo';
-import { SIGNIN_USER_MUTATION, CREATE_USER_MUTATION, SigninUserMutationResponse } from '../queries/userQueries';
-import { CreateLinkMutationResponse } from '../queries/linkQueries';
+import { SIGNIN_USER_MUTATION, CREATE_USER_MUTATION, SigninUserMutationResponse, CreateUserMutationResponse } from '../queries/userQueries';
+
 
 @Component({
   selector: 'app-login',
@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
         password: this.user.password
       }
     }).subscribe((result) => {
-      const id = result.data.signinUser.user.id;
-      const token = result.data.signinUser.token;
+      const id = result.data.authenticateUser.id;
+      const token = result.data.authenticateUser.token;
       this.saveUserData(id, token);
 
       this.router.navigate(['/']);
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   signupUser() {
-    this.apollo.mutate<CreateLinkMutationResponse>({
+    this.apollo.mutate<CreateUserMutationResponse>({
       mutation: CREATE_USER_MUTATION,
       variables: {
         name: this.user.name,
@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
         password: this.user.password
       }
     }).subscribe((result) => {
-      const id = result.data.signinUser.user.id;
-      const token = result.data.signinUser.token;
+      const id = result.data.signupUser.id;
+      const token = result.data.signupUser.token;
       this.saveUserData(id, token);
 
       this.router.navigate(['/']);
