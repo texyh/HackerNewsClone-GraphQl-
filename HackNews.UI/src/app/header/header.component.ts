@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,10 @@ import 'rxjs/add/operator/distinctUntilChanged';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   logged: boolean = false;
-  constructor(private authService: AuthService) { }
+
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.authService.isAuthenticated

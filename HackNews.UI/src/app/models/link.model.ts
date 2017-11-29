@@ -1,3 +1,6 @@
+import { User } from "./user.model";
+import { Vote } from "./vote.model";
+
 
 export class Link {
 
@@ -5,7 +8,10 @@ export class Link {
         public id?: string,
         public description?: string,
         public url?: string,
-        public createdAt?: DateTimeFormat
-    ) {}
+        public createdAt?: Date,
+        public postedBy?: User,
+        public votes?: Vote[]
+    ) {
+    }
 
 }

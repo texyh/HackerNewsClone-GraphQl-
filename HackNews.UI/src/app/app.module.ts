@@ -14,6 +14,8 @@ import { from } from 'apollo-link';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
+import { USerService } from './services/userService';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -24,7 +26,8 @@ import { AuthService } from './services/auth.service';
     LinkItemComponent,
     CreateLinkComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -47,12 +50,18 @@ import { AuthService } from './services/auth.service';
         pathMatch: 'full'
       },
       {
+        path: 'search',
+        component: SearchComponent,
+        pathMatch: 'full'
+      },
+      {
         path: '**',
         redirectTo: '',
       }
+      
     ])
   ],
-  providers: [AuthService],
+  providers: [AuthService, USerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

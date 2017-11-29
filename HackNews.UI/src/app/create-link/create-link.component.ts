@@ -3,6 +3,7 @@ import { Link } from '../models/link.model';
 import { Apollo } from 'apollo-angular';
 import { CREATE_LINK_MUTATION, CreateLinkMutationResponse, ALL_LINKS_QUERY } from '../queries/linkQueries';
 import { Router } from '@angular/router';
+import { USerService } from '../services/userService';
 
 @Component({
   selector: 'app-create-link',
@@ -14,7 +15,8 @@ export class CreateLinkComponent implements OnInit {
   link: Link;
 
   constructor(private apollo: Apollo,
-              private router: Router) {
+              private router: Router,
+              private userService: USerService) {
     this.link =  new Link();
   }
 
@@ -22,11 +24,18 @@ export class CreateLinkComponent implements OnInit {
   }
 
   createLink() {
+    let userId = this.userService.UserId;
+
+    if (!userId) {
+      alert('please loggin');
+    }
+
     this.apollo.mutate({
       mutation: CREATE_LINK_MUTATION,
       variables: {
         description: this.link.description,
-        url: this.link.url
+        url: this.link.url,
+        postedById: userId
       },
       update: (store, { data: { createLink } }) => {
         const data: any = store.readQuery({

@@ -1,3 +1,5 @@
+import { Vote } from "./vote.model";
+
 
 export class User {
 
@@ -5,6 +7,7 @@ export class User {
         public id?: string,
         public name?: string,
         public email?: string,
-        public password?: string
+        public password?: string,
+        public votes?: Vote[]
     ) {}
 }
