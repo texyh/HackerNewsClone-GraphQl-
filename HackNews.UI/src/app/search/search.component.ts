@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Link } from '../models/link.model';
 import { Apollo } from 'apollo-angular';
 import { AuthService } from '../services/auth.service';
+import { ALL_LINKS_SEARCH_QUERY } from '../queries/linkQueries';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +17,7 @@ export class SearchComponent implements OnInit {
 
   logged: boolean = false;
 
-  subscriptions: = [];
+  subscriptions = [];
   constructor(private apollo: Apollo, private authService: AuthService) { }
 
   ngOnInit() {

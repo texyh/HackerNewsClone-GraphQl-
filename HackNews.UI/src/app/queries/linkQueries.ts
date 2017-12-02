@@ -31,12 +31,44 @@ export interface AllLinkQueryResponse {
   loading: boolean;
 }
 
+export const ALL_LINKS_SEARCH_QUERY = gql`
+query AllLinksSearchQuery($searchText: String!) {
+  allLinks(filter: {
+    OR: [{
+      url_contains: $searchText
+    }, {
+      description_contains: $searchText
+    }]
+  }) {
+    id
+    url
+    description
+    createdAt
+    postedBy {
+      id
+      name
+    }
+    votes {
+      id
+      user {
+        id
+      }
+    }
+  }
+}
+`;
+
+export interface AllLinksSearchQueryResponse {
+loading: boolean;
+allLinks: Link[];
+}
+
 export const CREATE_LINK_MUTATION = gql`
-mutation CreateLinkMutation($description: String!, $url: String!, $postedById: String!) {
+mutation CreateLinkMutation($description: String!, $url: String!, $postedById: ID!) {
   createLink(
     description: $description,
     url: $url,
-    postById: $postById
+    postedById: $postedById
   ) {
     id
     createdAt
